@@ -3,9 +3,11 @@ import librosa.display
 import matplotlib.pyplot as plt
 import numpy as np
 
+y, sr = librosa.load('audio.wav')
+
 SamplingRate = 22050
-chirp = librosa.chirp(fmin = 32, fmax = 32 * 2**5, sr=SamplingRate, duration=10, linear=True)
-D = librosa.stft(chirp)
+#chirp = librosa.chirp(fmin = 32, fmax = 32 * 2**5, sr=SamplingRate, duration=10, linear=True)
+D = np.abs(librosa.stft(y))
 mag, phase = librosa.magphase(D)
 
 freqs = librosa.fft_frequencies()
